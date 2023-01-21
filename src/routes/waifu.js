@@ -66,6 +66,9 @@ router.get('/waifu/:search', async (req, res) => {
     if (!waifu) {
         return res.status(404).json({ message: 'Waifu no encontrada' })
     }
+    if (waifu.length == 0) {
+        return res.status(404).json({ message: 'Waifu no encontrada' })
+    }
 
     res.json(waifu)
 })
