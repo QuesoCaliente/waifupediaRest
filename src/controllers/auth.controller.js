@@ -1,6 +1,7 @@
 const userSchema = require('../models/user')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const { serialize } = require('cookie')
 
 
 const signUpController = async (req, res) => {
@@ -45,8 +46,7 @@ const signInController = async (req, res) => {
         const token = jwt.sign({ id: user._id, email: user.email, roles: user.roles }, process.env.SECRET_KEY, {
             expiresIn: 86400
         })
-
-        return res.json({ token })
+        return res.status(200).json({ token })
 
     } catch (error) {
         console.log('Error ', error)

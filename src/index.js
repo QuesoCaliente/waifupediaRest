@@ -16,6 +16,7 @@ const sentimentalRoutes = require('./routes/sentimental')
 const waifuRoutes = require('./routes/waifu')
 const rolesRoutes = require('./routes/roles')
 const authRoutes = require('./routes/auth.routes')
+const cookieParser = require('cookie-parser');
 
 const cors = require('cors')
 
@@ -27,10 +28,11 @@ const app = express();
 //Middleware
 app.use(cors())
 app.use(morgan('dev'))
+app.use(cookieParser());
 app.use(express.json())
 app.use('/api/v1/', authRoutes)
 app.use('/api/v1/', waifuRoutes)
-app.use('/api/v1/', ensureToken, verifyToken, ubicacionRoutes)
+app.use('/api/v1/', ubicacionRoutes)
 app.use('/api/v1/', animeRoutes)
 app.use('/api/v1/', colorRoutes)
 app.use('/api/v1/', dereRoutes)

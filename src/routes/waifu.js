@@ -49,6 +49,7 @@ router.get('/waifu', async (req, res) => {
 
 // obtener
 router.get('/waifu/:search', async (req, res) => {
+    console.log(req.cookies)
     const { search } = req.params;
     let waifu = null;
     if (mongoose.isValidObjectId(search)) {
